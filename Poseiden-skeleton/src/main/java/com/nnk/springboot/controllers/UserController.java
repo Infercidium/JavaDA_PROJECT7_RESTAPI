@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.service.UserI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,13 +17,14 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
     @Autowired
-    private UserRepository userRepository;
+    private UserI userS;
 
     @RequestMapping("/user/list")
     public String home(Model model)
     {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userS.getUsers());
         return "user/list";
     }
 
@@ -34,10 +36,8 @@ public class UserController {
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            user.setPassword(encoder.encode(user.getPassword()));
-            userRepository.save(user);
-            model.addAttribute("users", userRepository.findAll());
+            userS.postUser(user);
+            model.addAttribute("users", userS.getUsers());
             return "redirect:/user/list";
         }
         return "user/add";
@@ -45,8 +45,8 @@ public class UserController {
 
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        user.setPassword("");
+        User user = userS.getUser(id);
+        user.setPassword(""); //TODO Pourquoi ?
         model.addAttribute("user", user);
         return "user/update";
     }
@@ -58,19 +58,16 @@ public class UserController {
             return "user/update";
         }
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);
-        userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
+        userS.postUser(user);
+        model.addAttribute("users", userS.getUsers());
         return "redirect:/user/list";
     }
 
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        userRepository.delete(user);
-        model.addAttribute("users", userRepository.findAll());
+        userS.deleteUser(id);
+        model.addAttribute("users", userS.getUsers());
         return "redirect:/user/list";
     }
 }

@@ -38,7 +38,7 @@ public class UserService implements UserI {
     @Override
     public User getUser(final int id) {
         LOGGER.debug("User found");
-        return userR.getOne(id);
+        return userR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
     }
 
     @Override
