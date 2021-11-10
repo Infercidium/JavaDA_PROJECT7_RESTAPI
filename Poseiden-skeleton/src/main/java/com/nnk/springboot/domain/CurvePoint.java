@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "curvepoint")
-@Setter @NoArgsConstructor @AllArgsConstructor
+@Data @Setter @NoArgsConstructor @AllArgsConstructor
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -45,24 +46,48 @@ public class CurvePoint {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getCurveId() {
         return curveId;
+    }
+
+    public void setCurveId(Integer curveId) {
+        this.curveId = curveId;
     }
 
     public LocalDateTime getAsOfDate() {
         return asOfDate;
     }
 
+    public void setAsOfDate(LocalDateTime asOfDate) {
+        this.asOfDate = asOfDate;
+    }
+
     public Double getTerm() {
         return term;
+    }
+
+    public void setTerm(Double term) {
+        this.term = term;
     }
 
     public Double getValue() {
         return value;
     }
 
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override

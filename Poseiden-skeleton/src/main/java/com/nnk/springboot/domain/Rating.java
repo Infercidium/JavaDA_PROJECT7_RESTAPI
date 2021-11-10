@@ -1,9 +1,6 @@
 package com.nnk.springboot.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rating")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Data @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -37,6 +34,46 @@ public class Rating {
         this.sandPRating = sandPRatingC;
         this.fitchRating = fitchRatingC;
         this.orderNumber = orderNumberC;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMoodysRating() {
+        return moodysRating;
+    }
+
+    public void setMoodysRating(String moodysRating) {
+        this.moodysRating = moodysRating;
+    }
+
+    public String getSandPRating() {
+        return sandPRating;
+    }
+
+    public void setSandPRating(String sandPRating) {
+        this.sandPRating = sandPRating;
+    }
+
+    public String getFitchRating() {
+        return fitchRating;
+    }
+
+    public void setFitchRating(String fitchRating) {
+        this.fitchRating = fitchRating;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     @Override
