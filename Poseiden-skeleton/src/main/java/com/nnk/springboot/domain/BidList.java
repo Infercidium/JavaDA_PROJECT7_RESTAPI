@@ -1,11 +1,6 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

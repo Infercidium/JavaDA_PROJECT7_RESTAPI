@@ -1,7 +1,6 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
-import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rating")
-@Getter @Setter
 public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

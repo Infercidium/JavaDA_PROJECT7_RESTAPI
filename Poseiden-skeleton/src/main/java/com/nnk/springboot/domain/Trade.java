@@ -1,9 +1,6 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +15,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trade")
-@Setter
 public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

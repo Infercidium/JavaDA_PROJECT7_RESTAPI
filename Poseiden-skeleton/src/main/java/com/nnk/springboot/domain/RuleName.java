@@ -1,7 +1,5 @@
 package com.nnk.springboot.domain;
 
-import lombok.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +10,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rulename")
-@Getter @Setter
 public class RuleName {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

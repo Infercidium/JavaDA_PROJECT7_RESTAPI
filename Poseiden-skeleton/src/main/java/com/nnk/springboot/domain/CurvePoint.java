@@ -1,10 +1,6 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +15,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "curvepoint")
-@Setter @NoArgsConstructor @AllArgsConstructor
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
