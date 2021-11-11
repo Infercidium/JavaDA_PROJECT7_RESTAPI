@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class BidListService implements BidListI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BidListService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(BidListService.class);
 
     @Autowired
     private BidListRepository bidListR;
@@ -27,7 +28,8 @@ public class BidListService implements BidListI {
     @Override
     public BidList getBidList(final int id) {
         LOGGER.debug("BidList found");
-        return bidListR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
+        return bidListR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid bidList Id:" + id));
     }
 
     @Override

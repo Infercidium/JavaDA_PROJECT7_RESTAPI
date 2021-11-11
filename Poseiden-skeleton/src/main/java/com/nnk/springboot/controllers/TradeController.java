@@ -18,7 +18,8 @@ import javax.validation.Valid;
 @Controller
 public class TradeController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TradeController.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(TradeController.class);
 
     @Autowired
     private TradeI tradeS;
@@ -37,7 +38,8 @@ public class TradeController {
     }
 
     @PostMapping("/trade/validate")
-    public String validate(@Valid final Trade trade, final BindingResult result, final Model model) {
+    public String validate(@Valid final Trade trade,
+                           final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             tradeS.postTrade(trade);
             model.addAttribute("trades", tradeS.getTrades());
@@ -49,7 +51,8 @@ public class TradeController {
     }
 
     @GetMapping("/trade/update/{id}")
-    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id,
+                                 final Model model) {
         Trade trade = tradeS.getTrade(id);
         model.addAttribute("trade", trade);
         LOGGER.debug("Trade modification");
@@ -57,8 +60,9 @@ public class TradeController {
     }
 
     @PostMapping("/trade/update/{id}")
-    public String updateTrade(@PathVariable("id") final Integer id, @Valid final Trade trade,
-                             BindingResult result, Model model) {
+    public String updateTrade(@PathVariable("id") final Integer id,
+                              @Valid final Trade trade,
+                             final BindingResult result, final Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Entry error");
             return "trade/update";
@@ -71,7 +75,8 @@ public class TradeController {
     }
 
     @GetMapping("/trade/delete/{id}")
-    public String deleteTrade(@PathVariable("id") final Integer id, final Model model) {
+    public String deleteTrade(@PathVariable("id") final Integer id,
+                              final Model model) {
         tradeS.deleteTrade(id);
         model.addAttribute("trades", tradeS.getTrades());
         LOGGER.info("Trade delete");

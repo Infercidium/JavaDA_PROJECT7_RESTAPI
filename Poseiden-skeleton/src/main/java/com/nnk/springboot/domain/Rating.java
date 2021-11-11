@@ -1,6 +1,9 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +17,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rating")
+@Getter @Setter @NoArgsConstructor
 public class Rating {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "MoodysRating is mandatory")
@@ -29,57 +33,15 @@ public class Rating {
     private String fitchRating;
 
     @NotNull
-    @Digits(integer = Digit.Entier, fraction = 0)
+    @Digits(integer = Digit.ENTIER, fraction = 0)
     private Integer orderNumber;
 
-    public Rating() {
-    }
-
-    public Rating(final String moodysRatingC, final String sandPRatingC, final String fitchRatingC, final Integer orderNumberC) {
+    public Rating(final String moodysRatingC, final String sandPRatingC,
+                  final String fitchRatingC, final Integer orderNumberC) {
         this.moodysRating = moodysRatingC;
         this.sandPRating = sandPRatingC;
         this.fitchRating = fitchRatingC;
         this.orderNumber = orderNumberC;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMoodysRating() {
-        return moodysRating;
-    }
-
-    public void setMoodysRating(String moodysRating) {
-        this.moodysRating = moodysRating;
-    }
-
-    public String getSandPRating() {
-        return sandPRating;
-    }
-
-    public void setSandPRating(String sandPRating) {
-        this.sandPRating = sandPRating;
-    }
-
-    public String getFitchRating() {
-        return fitchRating;
-    }
-
-    public void setFitchRating(String fitchRating) {
-        this.fitchRating = fitchRating;
-    }
-
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
     }
 
     @Override

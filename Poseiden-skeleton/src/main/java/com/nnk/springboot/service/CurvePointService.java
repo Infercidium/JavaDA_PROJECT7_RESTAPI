@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class CurvePointService implements CurvePointI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CurvePointService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(CurvePointService.class);
 
     @Autowired
     private CurvePointRepository curvePointR;
@@ -27,7 +28,8 @@ public class CurvePointService implements CurvePointI {
     @Override
     public CurvePoint getCurvePoint(final int id) {
         LOGGER.debug("CurvePoint found");
-        return curvePointR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
+        return curvePointR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid curvePoint Id:" + id));
     }
 
     @Override

@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
@@ -20,14 +19,15 @@ import java.util.Objects;
 @Getter @Setter @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "Username is mandatory")
     private String username;
 
     @NotBlank(message = "Password is mandatory")
-    @Length(min = Password.Min, message = "The password must be at least 8 characters long.")
+    @Length(min = Password.MIN,
+            message = "The password must be at least 8 characters long")
     private String password;
 
     @NotBlank(message = "FullName is mandatory")

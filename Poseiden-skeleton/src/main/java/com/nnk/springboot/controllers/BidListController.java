@@ -19,7 +19,8 @@ import javax.validation.Valid;
 @Controller
 public class BidListController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BidListController.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(BidListController.class);
 
     @Autowired
     private BidListI bidListS;
@@ -38,7 +39,9 @@ public class BidListController {
     }
 
     @PostMapping("/bidList/validate")
-    public String validate(@Valid final BidList bid, final BindingResult result, final Model model) {
+    public String validate(@Valid final BidList bid,
+                           final BindingResult result,
+                           final Model model) {
         if (!result.hasErrors()) {
             bidListS.postBidList(bid);
             model.addAttribute("bidLists", bidListS.getBidLists());
@@ -50,7 +53,8 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id,
+                                 final Model model) {
         BidList bidList = bidListS.getBidList(id);
         model.addAttribute("bidList", bidList);
         LOGGER.debug("Modification of the Bid");
@@ -58,8 +62,9 @@ public class BidListController {
     }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") final Integer id, @Valid final BidList bidList,
-                             BindingResult result, Model model) {
+    public String updateBid(@PathVariable("id") final Integer id,
+                            @Valid final BidList bidList,
+                             final BindingResult result, final Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Entry error");
             return "bidList/update";
@@ -72,7 +77,8 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/delete/{id}")
-    public String deleteBid(@PathVariable("id") final Integer id, final Model model) {
+    public String deleteBid(@PathVariable("id") final Integer id,
+                            final Model model) {
         bidListS.deleteBidList(id);
         model.addAttribute("bidLists", bidListS.getBidLists());
         LOGGER.info("Bid deleted");

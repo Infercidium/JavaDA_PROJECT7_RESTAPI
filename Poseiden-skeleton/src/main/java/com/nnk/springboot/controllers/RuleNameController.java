@@ -18,7 +18,8 @@ import javax.validation.Valid;
 @Controller
 public class RuleNameController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RuleNameController.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(RuleNameController.class);
 
     @Autowired
     private RuleNameI ruleNameS;
@@ -37,7 +38,8 @@ public class RuleNameController {
     }
 
     @PostMapping("/ruleName/validate")
-    public String validate(@Valid final RuleName ruleName, final BindingResult result, final Model model) {
+    public String validate(@Valid final RuleName ruleName,
+                           final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             ruleNameS.postRuleName(ruleName);
             model.addAttribute("ruleNames", ruleNameS.getRuleNames());
@@ -49,7 +51,8 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/update/{id}")
-    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id,
+                                 final Model model) {
         RuleName ruleName = ruleNameS.getRuleName(id);
         model.addAttribute("ruleName", ruleName);
         LOGGER.debug("Changing the RuleName");
@@ -57,8 +60,9 @@ public class RuleNameController {
     }
 
     @PostMapping("/ruleName/update/{id}")
-    public String updateRuleName(@PathVariable("id") final Integer id, @Valid final RuleName ruleName,
-                             final BindingResult result, Model model) {
+    public String updateRuleName(@PathVariable("id") final Integer id,
+                                 @Valid final RuleName ruleName,
+                             final BindingResult result, final Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Entry error");
             return "ruleName/update";
@@ -71,7 +75,8 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/delete/{id}")
-    public String deleteRuleName(@PathVariable("id") final Integer id, final Model model) {
+    public String deleteRuleName(@PathVariable("id") final Integer id,
+                                 final Model model) {
         ruleNameS.deleteRuleName(id);
         model.addAttribute("ruleNames", ruleNameS.getRuleNames());
         LOGGER.info("RuleName deleted");

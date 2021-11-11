@@ -1,6 +1,9 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,80 +18,31 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "curvepoint")
+@Getter @Setter @NoArgsConstructor
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
-    @Digits(integer = Digit.Entier, fraction = 0)
+    @Digits(integer = Digit.ENTIER, fraction = 0)
     private Integer curveId;
 
     private LocalDateTime asOfDate;
 
-    @Digits(integer = Digit.Entier, fraction = 2)
+    @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double term;
 
-    @Digits(integer = Digit.Entier, fraction = 2)
+    @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double value;
 
     private LocalDateTime creationDate;
 
-    public CurvePoint() {
-    }
-
-    public CurvePoint(final Integer curveIdC, final Double termC, final Double valueC) {
+    public CurvePoint(final Integer curveIdC,
+                      final Double termC, final Double valueC) {
         this.curveId = curveIdC;
         this.term = termC;
         this.value = valueC;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCurveId() {
-        return curveId;
-    }
-
-    public void setCurveId(Integer curveId) {
-        this.curveId = curveId;
-    }
-
-    public LocalDateTime getAsOfDate() {
-        return asOfDate;
-    }
-
-    public void setAsOfDate(LocalDateTime asOfDate) {
-        this.asOfDate = asOfDate;
-    }
-
-    public Double getTerm() {
-        return term;
-    }
-
-    public void setTerm(Double term) {
-        this.term = term;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     @Override

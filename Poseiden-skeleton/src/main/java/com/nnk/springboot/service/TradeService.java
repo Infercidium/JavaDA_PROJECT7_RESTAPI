@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class TradeService implements TradeI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TradeService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(TradeService.class);
 
     @Autowired
     private TradeRepository tradeR;
@@ -27,7 +28,8 @@ public class TradeService implements TradeI {
     @Override
     public Trade getTrade(final int id) {
         LOGGER.debug("Trade found");
-        return tradeR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
+        return tradeR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid trade Id:" + id));
     }
 
     @Override

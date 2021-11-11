@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class RatingService implements RatingI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RatingService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(RatingService.class);
 
     @Autowired
     private RatingRepository ratingR;
@@ -27,7 +28,8 @@ public class RatingService implements RatingI {
     @Override
     public Rating getRating(final int id) {
         LOGGER.debug("Rating found");
-        return ratingR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
+        return ratingR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid rating Id:" + id));
     }
 
     @Override

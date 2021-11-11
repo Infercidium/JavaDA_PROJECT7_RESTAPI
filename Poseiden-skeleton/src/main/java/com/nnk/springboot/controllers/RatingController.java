@@ -18,7 +18,8 @@ import javax.validation.Valid;
 @Controller
 public class RatingController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RatingController.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(RatingController.class);
 
     @Autowired
     private RatingI ratingS;
@@ -37,7 +38,8 @@ public class RatingController {
     }
 
     @PostMapping("/rating/validate")
-    public String validate(@Valid final Rating rating, final BindingResult result, final Model model) {
+    public String validate(@Valid final Rating rating,
+                           final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             ratingS.postRating(rating);
             model.addAttribute("ratings", ratingS.getRatings());
@@ -49,7 +51,8 @@ public class RatingController {
     }
 
     @GetMapping("/rating/update/{id}")
-    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id,
+                                 final Model model) {
         Rating rating = ratingS.getRating(id);
         model.addAttribute("rating", rating);
         LOGGER.debug("Modification of the Rating");
@@ -57,8 +60,9 @@ public class RatingController {
     }
 
     @PostMapping("/rating/update/{id}")
-    public String updateRating(@PathVariable("id") final Integer id, @Valid final Rating rating,
-                             BindingResult result, Model model) {
+    public String updateRating(@PathVariable("id") final Integer id,
+                               @Valid final Rating rating,
+                             final BindingResult result, final Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Entry error");
             return "rating/update";
@@ -71,7 +75,8 @@ public class RatingController {
     }
 
     @GetMapping("/rating/delete/{id}")
-    public String deleteRating(@PathVariable("id") final Integer id, final Model model) {
+    public String deleteRating(@PathVariable("id") final Integer id,
+                               final Model model) {
         ratingS.deleteRating(id);
         model.addAttribute("ratings", ratingS.getRatings());
         LOGGER.info("Rating deleted");

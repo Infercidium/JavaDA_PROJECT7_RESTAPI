@@ -13,7 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("app")
 public class LoginController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserI userS;
@@ -38,7 +39,7 @@ public class LoginController {
     @GetMapping("error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();
-        String errorMessage= "You are not authorized for the requested data.";
+        String errorMessage = "You are not authorized for the requested data.";
         mav.addObject("errorMsg", errorMessage);
         mav.setViewName("403");
         LOGGER.error("Error detected");

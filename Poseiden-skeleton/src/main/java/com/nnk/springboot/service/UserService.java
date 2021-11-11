@@ -19,7 +19,8 @@ import java.util.List;
 @Service
 public class UserService implements UserI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userR;
@@ -38,7 +39,8 @@ public class UserService implements UserI {
     @Override
     public User getUser(final int id) {
         LOGGER.debug("User found");
-        return userR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        return userR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid user Id:" + id));
     }
 
     @Override
@@ -62,12 +64,15 @@ public class UserService implements UserI {
      * @throws UsernameNotFoundException if Username is not found.
      */
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username)
+            throws UsernameNotFoundException {
         User user = userR.findByUsernameIgnoreCase(username);
         if (user == null) {
             throw  new UsernameNotFoundException("Could not find user");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRole()));
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(), user.getPassword(),
+                mapRolesToAuthorities(user.getRole()));
     }
 
     /**
@@ -75,7 +80,8 @@ public class UserService implements UserI {
      * @param authority : role like User or Admin.
      * @return Authorities.
      */
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(final String authority) {
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(
+                    final String authority) {
         return Collections.singleton(new SimpleGrantedAuthority(authority));
     }
 }

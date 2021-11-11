@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 public class RuleNameService implements RuleNameI {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RuleNameService.class);
+    private static final Logger LOGGER
+            = LoggerFactory.getLogger(RuleNameService.class);
 
     @Autowired
     private RuleNameRepository ruleNameR;
@@ -27,7 +28,8 @@ public class RuleNameService implements RuleNameI {
     @Override
     public RuleName getRuleName(final int id) {
         LOGGER.debug("RuleName found");
-        return ruleNameR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+        return ruleNameR.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid ruleName Id:" + id));
     }
 
     @Override

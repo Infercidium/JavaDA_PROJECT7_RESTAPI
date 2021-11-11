@@ -1,3 +1,4 @@
+C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\constants\Password.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\LoginController.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\BidList.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Trade.java
@@ -18,6 +19,7 @@ C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\BidListI.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\TradeService.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\RuleName.java
+C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\constants\Digit.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\CurvePointRepository.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\UserRepository.java
 C:\Users\Infercidium\IdeaProjects\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\service\BidListService.java
