@@ -22,8 +22,7 @@ public class UserController {
     private UserI userS;
 
     @RequestMapping("/user/list")
-    public String home(Model model)
-    {
+    public String home(final Model model) {
         model.addAttribute("users", userS.getUsers());
         return "user/list";
     }
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/user/validate")
-    public String validate(@Valid User user, BindingResult result, Model model) {
+    public String validate(@Valid final User user, final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             userS.postUser(user);
             model.addAttribute("users", userS.getUsers());
@@ -44,15 +43,15 @@ public class UserController {
     }
 
     @GetMapping("/user/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
         User user = userS.getUser(id);
-        user.setPassword(""); //TODO Pourquoi ?
+        user.setPassword("");
         model.addAttribute("user", user);
         return "user/update";
     }
 
     @PostMapping("/user/update/{id}")
-    public String updateUser(@PathVariable("id") Integer id, @Valid User user,
+    public String updateUser(@PathVariable("id") final Integer id, @Valid final User user,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "user/update";
@@ -65,7 +64,7 @@ public class UserController {
     }
 
     @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable("id") Integer id, Model model) {
+    public String deleteUser(@PathVariable("id") final Integer id, final Model model) {
         userS.deleteUser(id);
         model.addAttribute("users", userS.getUsers());
         return "redirect:/user/list";

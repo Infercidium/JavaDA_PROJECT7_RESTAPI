@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.constants.Password;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "Password is mandatory")
-    @Length(min = 8, message = "The password must be at least 8 characters long.")
+    @Length(min = Password.Min, message = "The password must be at least 8 characters long.")
 
     private String password;
 

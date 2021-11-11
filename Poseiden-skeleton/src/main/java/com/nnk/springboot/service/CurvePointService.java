@@ -27,7 +27,7 @@ public class CurvePointService implements CurvePointI {
     @Override
     public CurvePoint getCurvePoint(final int id) {
         LOGGER.debug("CurvePoint found");
-        return curvePointR.getOne(id);
+        return curvePointR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
     }
 
     @Override

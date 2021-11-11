@@ -21,19 +21,18 @@ public class BidListController {
     private BidListI bidListS;
 
     @RequestMapping("/bidList/list")
-    public String home(Model model)
-    {
+    public String home(final Model model) {
         model.addAttribute("bidLists", bidListS.getBidLists());
         return "bidList/list";
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm(BidList bid) {
+    public String addBidForm(final BidList bid) {
         return "bidList/add";
     }
 
     @PostMapping("/bidList/validate")
-    public String validate(@Valid BidList bid, BindingResult result, Model model) {
+    public String validate(@Valid final BidList bid, final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             bidListS.postBidList(bid);
             model.addAttribute("bidLists", bidListS.getBidLists());
@@ -43,14 +42,14 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
         BidList bidList = bidListS.getBidList(id);
         model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
+    public String updateBid(@PathVariable("id") final Integer id, @Valid final BidList bidList,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "bidList/update";
@@ -62,7 +61,7 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
+    public String deleteBid(@PathVariable("id") final Integer id, final Model model) {
         bidListS.deleteBidList(id);
         model.addAttribute("bidLists", bidListS.getBidLists());
         return "redirect:/bidList/list";

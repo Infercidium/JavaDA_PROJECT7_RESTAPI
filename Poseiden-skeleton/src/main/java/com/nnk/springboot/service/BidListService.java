@@ -27,7 +27,7 @@ public class BidListService implements BidListI {
     @Override
     public BidList getBidList(final int id) {
         LOGGER.debug("BidList found");
-        return bidListR.getOne(id);
+        return bidListR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
     }
 
     @Override

@@ -20,19 +20,18 @@ public class RuleNameController {
     private RuleNameI ruleNameS;
 
     @RequestMapping("/ruleName/list")
-    public String home(Model model)
-    {
-        model.addAttribute("ruleName", ruleNameS.getRuleNames());
+    public String home(final Model model) {
+        model.addAttribute("ruleNames", ruleNameS.getRuleNames());
         return "ruleName/list";
     }
 
     @GetMapping("/ruleName/add")
-    public String addRuleForm(RuleName bid) {
+    public String addRuleForm(final RuleName bid) {
         return "ruleName/add";
     }
 
     @PostMapping("/ruleName/validate")
-    public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
+    public String validate(@Valid final RuleName ruleName, final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             ruleNameS.postRuleName(ruleName);
             model.addAttribute("ruleNames", ruleNameS.getRuleNames());
@@ -42,15 +41,15 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
         RuleName ruleName = ruleNameS.getRuleName(id);
         model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
 
     @PostMapping("/ruleName/update/{id}")
-    public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
-                             BindingResult result, Model model) {
+    public String updateRuleName(@PathVariable("id") final Integer id, @Valid final RuleName ruleName,
+                             final BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "ruleName/update";
         }
@@ -61,7 +60,7 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/delete/{id}")
-    public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
+    public String deleteRuleName(@PathVariable("id") final Integer id, final Model model) {
         ruleNameS.deleteRuleName(id);
         model.addAttribute("ruleNames", ruleNameS.getRuleNames());
         return "redirect:/ruleName/list";

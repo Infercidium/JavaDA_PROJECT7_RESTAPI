@@ -27,7 +27,7 @@ public class RatingService implements RatingI {
     @Override
     public Rating getRating(final int id) {
         LOGGER.debug("Rating found");
-        return ratingR.getOne(id);
+        return ratingR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
     }
 
     @Override

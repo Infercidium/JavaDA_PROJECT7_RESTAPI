@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rulename")
-@Data @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
 public class RuleName {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -35,6 +35,9 @@ public class RuleName {
 
     @NotBlank(message = "SqlPart is mandatory")
     private String sqlPart;
+
+    public RuleName() {
+    }
 
     public RuleName(final String nameC, final String descriptionC, final String jsonC, final String templateC, final String sqlStrC, final String sqlPartC) {
         this.name = nameC;

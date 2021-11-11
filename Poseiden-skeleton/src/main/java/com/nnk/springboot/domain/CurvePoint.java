@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.constants.Digit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,30 +12,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "curvepoint")
-@Data @Setter @NoArgsConstructor @AllArgsConstructor
+@Setter @NoArgsConstructor @AllArgsConstructor
 public class CurvePoint {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Digits(integer = 10, fraction = 0)
+    @NotNull
+    @Digits(integer = Digit.Entier, fraction = 0)
     private Integer curveId;
 
     private LocalDateTime asOfDate;
 
-    @Digits(integer = 10, fraction = 2)
+    @Digits(integer = Digit.Entier, fraction = 2)
     private Double term;
 
-    @Digits(integer = 10, fraction = 2)
+    @Digits(integer = Digit.Entier, fraction = 2)
     private Double value;
 
     private LocalDateTime creationDate;
+
+    public CurvePoint() {
+    }
 
     public CurvePoint(final Integer curveIdC, final Double termC, final Double valueC) {
         this.curveId = curveIdC;

@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.constants.Digit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bidlist")
-@Data @Setter @NoArgsConstructor @AllArgsConstructor
 public class BidList {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -30,59 +30,62 @@ public class BidList {
     @NotBlank(message = "Type is mandatory")
     private String type;
 
-    @Digits(integer = 10, fraction = 2)
+    @Digits(integer = Digit.Entier, fraction = 2)
     private Double bidQuantity;
 
-    @Digits(integer = 10, fraction = 2)
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double askQuantity;
 
-    @Digits(integer = 10, fraction = 2)
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double bid;
 
-    @Digits(integer = 10, fraction = 2)
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double ask;
 
-    @NotBlank(message = "Benchmark is mandatory")
+    //@NotBlank(message = "Benchmark is mandatory")
     private String benchmark;
 
     private LocalDateTime bidListDate;
 
-    @NotBlank(message = "Commentary is mandatory")
+    //@NotBlank(message = "Commentary is mandatory")
     private String commentary;
 
-    @NotBlank(message = "Security is mandatory")
+    //@NotBlank(message = "Security is mandatory")
     private String security;
 
-    @NotBlank(message = "Status is mandatory")
+    //@NotBlank(message = "Status is mandatory")
     private String status;
 
-    @NotBlank(message = "Trader is mandatory")
+    //@NotBlank(message = "Trader is mandatory")
     private String trader;
 
-    @NotBlank(message = "Book is mandatory")
+    //@NotBlank(message = "Book is mandatory")
     private String book;
 
-    @NotBlank(message = "CreationName is mandatory")
+    //@NotBlank(message = "CreationName is mandatory")
     private String creationName;
 
     private LocalDateTime creationDate;
 
-    @NotBlank(message = "RevisionName is mandatory")
+    //@NotBlank(message = "RevisionName is mandatory")
     private String revisionName;
 
     private LocalDateTime revisionDate;
 
-    @NotBlank(message = "DealName is mandatory")
+    //@NotBlank(message = "DealName is mandatory")
     private String dealName;
 
-    @NotBlank(message = "DealType is mandatory")
+    //@NotBlank(message = "DealType is mandatory")
     private String dealType;
 
-    @NotBlank(message = "SourceListId is mandatory")
+    //@NotBlank(message = "SourceListId is mandatory")
     private String sourceListId;
 
-    @NotBlank(message = "Side is mandatory")
+    //@NotBlank(message = "Side is mandatory")
     private String side;
+
+    public BidList() {
+    }
 
     public BidList(final String accountC, final String typeC, final Double bidQuantityC) {
         this.account = accountC;

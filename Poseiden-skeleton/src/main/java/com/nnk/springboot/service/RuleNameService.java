@@ -27,7 +27,7 @@ public class RuleNameService implements RuleNameI {
     @Override
     public RuleName getRuleName(final int id) {
         LOGGER.debug("RuleName found");
-        return ruleNameR.getOne(id);
+        return ruleNameR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
     }
 
     @Override

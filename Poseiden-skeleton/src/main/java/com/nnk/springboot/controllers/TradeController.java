@@ -20,19 +20,18 @@ public class TradeController {
     private TradeI tradeS;
 
     @RequestMapping("/trade/list")
-    public String home(Model model)
-    {
+    public String home(final Model model) {
         model.addAttribute("trades", tradeS.getTrades());
         return "trade/list";
     }
 
     @GetMapping("/trade/add")
-    public String addUser(Trade bid) {
+    public String addUser(final Trade bid) {
         return "trade/add";
     }
 
     @PostMapping("/trade/validate")
-    public String validate(@Valid Trade trade, BindingResult result, Model model) {
+    public String validate(@Valid final Trade trade, final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
             tradeS.postTrade(trade);
             model.addAttribute("trades", tradeS.getTrades());
@@ -42,14 +41,14 @@ public class TradeController {
     }
 
     @GetMapping("/trade/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id, final Model model) {
         Trade trade = tradeS.getTrade(id);
         model.addAttribute("trade", trade);
         return "trade/update";
     }
 
     @PostMapping("/trade/update/{id}")
-    public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
+    public String updateTrade(@PathVariable("id") final Integer id, @Valid final Trade trade,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "trade/update";
@@ -61,7 +60,7 @@ public class TradeController {
     }
 
     @GetMapping("/trade/delete/{id}")
-    public String deleteTrade(@PathVariable("id") Integer id, Model model) {
+    public String deleteTrade(@PathVariable("id") final Integer id, final Model model) {
         tradeS.deleteTrade(id);
         model.addAttribute("trades", tradeS.getTrades());
         return "redirect:/trade/list";

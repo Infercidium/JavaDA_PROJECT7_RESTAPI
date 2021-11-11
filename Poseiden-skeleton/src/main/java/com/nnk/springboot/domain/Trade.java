@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.constants.Digit;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -16,7 +18,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trade")
-@Setter @NoArgsConstructor @AllArgsConstructor
+@Setter
 public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -28,52 +30,59 @@ public class Trade {
     @NotBlank(message = "Type is mandatory")
     private String type;
 
+    @Digits(integer = Digit.Entier, fraction = 2)
     private Double buyQuantity;
 
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double sellQuantity;
 
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double buyPrice;
 
+    //@Digits(integer = Digit.Entier, fraction = 2)
     private Double sellPrice;
 
-    @NotBlank(message = "Benchmark is mandatory")
+    //@NotBlank(message = "Benchmark is mandatory")
     private String benchmark;
 
     private LocalDateTime tradeDate = LocalDateTime.now();
 
-    @NotBlank(message = "Security is mandatory")
+    //@NotBlank(message = "Security is mandatory")
     private String security;
 
-    @NotBlank(message = "Status is mandatory")
+    //@NotBlank(message = "Status is mandatory")
     private String status;
 
-    @NotBlank(message = "Trader is mandatory")
+    //@NotBlank(message = "Trader is mandatory")
     private String trader;
 
-    @NotBlank(message = "Book is mandatory")
+    //@NotBlank(message = "Book is mandatory")
     private String book;
 
-    @NotBlank(message = "CreationName is mandatory")
+    //@NotBlank(message = "CreationName is mandatory")
     private String creationName;
 
     private LocalDateTime creationDate = LocalDateTime.now();
 
-    @NotBlank(message = "RevisionName is mandatory")
+    //@NotBlank(message = "RevisionName is mandatory")
     private String revisionName;
 
     private LocalDateTime revisionDate = LocalDateTime.now();
 
-    @NotBlank(message = "DealName is mandatory")
+    //@NotBlank(message = "DealName is mandatory")
     private String dealName;
 
-    @NotBlank(message = "DealType is mandatory")
+    //@NotBlank(message = "DealType is mandatory")
     private String dealType;
 
-    @NotBlank(message = "SourceListId is mandatory")
+    //@NotBlank(message = "SourceListId is mandatory")
     private String sourceListId;
 
-    @NotBlank(message = "Side is mandatory")
+    //@NotBlank(message = "Side is mandatory")
     private String side;
+
+    public Trade() {
+    }
 
     public Trade(final String accountC, final String typeC) {
         this.account = accountC;

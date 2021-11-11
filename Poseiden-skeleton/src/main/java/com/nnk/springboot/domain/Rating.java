@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.constants.Digit;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -7,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 @Table(name = "rating")
-@Data @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
 public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -27,7 +30,12 @@ public class Rating {
     @NotBlank(message = "FitchRating is mandatory")
     private String fitchRating;
 
+    @NotNull
+    @Digits(integer = Digit.Entier, fraction = 0)
     private Integer orderNumber;
+
+    public Rating() {
+    }
 
     public Rating(final String moodysRatingC, final String sandPRatingC, final String fitchRatingC, final Integer orderNumberC) {
         this.moodysRating = moodysRatingC;

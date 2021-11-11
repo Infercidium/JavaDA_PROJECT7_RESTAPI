@@ -12,6 +12,7 @@ com\nnk\springboot\controllers\UserController.class
 com\nnk\springboot\controllers\TradeController.class
 com\nnk\springboot\domain\RuleName.class
 com\nnk\springboot\service\TradeI.class
+com\nnk\springboot\constants\Digit.class
 com\nnk\springboot\service\CurvePointI.class
 com\nnk\springboot\configuration\Security.class
 com\nnk\springboot\domain\CurvePoint.class
@@ -30,5 +31,6 @@ com\nnk\springboot\controllers\RuleNameController.class
 com\nnk\springboot\service\UserService.class
 com\nnk\springboot\controllers\BidListController.class
 com\nnk\springboot\repositories\CurvePointRepository.class
+com\nnk\springboot\constants\Password.class
 com\nnk\springboot\repositories\RuleNameRepository.class
 com\nnk\springboot\service\RuleNameService.class

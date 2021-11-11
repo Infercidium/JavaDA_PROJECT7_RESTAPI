@@ -27,7 +27,7 @@ public class TradeService implements TradeI {
     @Override
     public Trade getTrade(final int id) {
         LOGGER.debug("Trade found");
-        return tradeR.getOne(id);
+        return tradeR.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id));
     }
 
     @Override
