@@ -1,7 +1,6 @@
 package com.nnk.springboot.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -17,7 +16,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trade")
-@Data @Setter @NoArgsConstructor @AllArgsConstructor
+@Setter @NoArgsConstructor @AllArgsConstructor
 public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

@@ -44,12 +44,14 @@ public class Security extends WebSecurityConfigurerAdapter {
                     .antMatchers("/bootstrap.min.css")
                     .permitAll()
                 .anyRequest().authenticated()
+                    .and().oauth2Login()
+                        .defaultSuccessUrl("/bidList/list").permitAll()
                     .and().formLogin()
-                        .defaultSuccessUrl("/home").permitAll()
+                        .defaultSuccessUrl("/bidList/list").permitAll()
                     .and().logout()
                         .invalidateHttpSession(true).clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/app-logout"))
                         .permitAll();
     }
 }
