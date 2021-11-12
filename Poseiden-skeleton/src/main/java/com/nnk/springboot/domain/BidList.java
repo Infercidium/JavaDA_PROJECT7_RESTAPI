@@ -138,11 +138,7 @@ public class BidList {
      * Basic Constructor.
      */
     public BidList() {
-        if (creationDate == null) {
-            creationDate = LocalDateTime.now();
-        } else {
-            revisionDate = LocalDateTime.now();
-        }
+        creationDate = LocalDateTime.now();
     }
 
     /**

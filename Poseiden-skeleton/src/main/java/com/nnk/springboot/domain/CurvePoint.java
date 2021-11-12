@@ -60,11 +60,7 @@ public class CurvePoint {
      * Basic constructor.
      */
     public CurvePoint() {
-        if (creationDate == null) {
             creationDate = LocalDateTime.now();
-        } else {
-            asOfDate = LocalDateTime.now();
-        }
     }
 
     /**

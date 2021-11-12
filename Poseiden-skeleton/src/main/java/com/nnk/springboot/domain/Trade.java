@@ -134,11 +134,7 @@ public class Trade {
      * Basic constructor.
      */
     public Trade() {
-        if (creationDate == null) {
             creationDate = LocalDateTime.now();
-        } else {
-            revisionDate = LocalDateTime.now();
-        }
     }
 
     /**
