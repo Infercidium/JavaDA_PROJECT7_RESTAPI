@@ -26,11 +26,11 @@ class BidListServiceTest {
     @Autowired
     private BidListService bidListS;
 
-    private BidList bidList = new BidList("account", "type", 2.00);
+    private final BidList bidList = new BidList("account", "type", 2.00);
 
     @BeforeEach
     void setUp() {
-        when(bidListR.findById(isA(Integer.class))).thenReturn(java.util.Optional.ofNullable(bidList));
+        when(bidListR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(bidList));
     }
 
     @Test

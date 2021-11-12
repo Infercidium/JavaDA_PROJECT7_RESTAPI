@@ -26,11 +26,11 @@ class RuleNameServiceTest {
     @Autowired
     private RuleNameService ruleNameS;
 
-    RuleName ruleName = new RuleName("name", "description", "json", "template", "sqlStr", "sqlPart");
+    private final RuleName ruleName = new RuleName("name", "description", "json", "template", "sqlStr", "sqlPart");
 
     @BeforeEach
     void setUp() {
-        when(ruleNameR.findById(isA(Integer.class))).thenReturn(java.util.Optional.ofNullable(ruleName));
+        when(ruleNameR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(ruleName));
     }
 
     @Test

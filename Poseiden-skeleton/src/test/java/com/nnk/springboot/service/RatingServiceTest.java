@@ -26,11 +26,11 @@ class RatingServiceTest {
     @Autowired
     private RatingService ratingS;
 
-    private Rating rating = new Rating("moody", "sand", "fitch", 1);
+    private final Rating rating = new Rating("moody", "sand", "fitch", 1);
 
     @BeforeEach
     void setUp() {
-        when(ratingR.findById(isA(Integer.class))).thenReturn(java.util.Optional.ofNullable(rating));
+        when(ratingR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(rating));
     }
 
     @Test

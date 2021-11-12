@@ -26,11 +26,11 @@ class TradeServiceTest {
     @Autowired
     private TradeService tradeS;
 
-    private Trade trade = new Trade("account", "type");
+    private final Trade trade = new Trade("account", "type");
 
     @BeforeEach
     void setUp() {
-        when(tradeR.findById(isA(Integer.class))).thenReturn(java.util.Optional.ofNullable(trade));
+        when(tradeR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(trade));
     }
 
     @Test

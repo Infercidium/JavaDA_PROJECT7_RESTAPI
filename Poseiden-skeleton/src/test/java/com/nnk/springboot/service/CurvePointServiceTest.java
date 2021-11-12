@@ -26,11 +26,11 @@ class CurvePointServiceTest {
     @Autowired
     private CurvePointService curvePointS;
 
-    private CurvePoint curvePoint = new CurvePoint(1,1.00,1.00);
+    private final CurvePoint curvePoint = new CurvePoint(1,1.00,1.00);
 
     @BeforeEach
     void setUp() {
-        when(curvePointR.findById(isA(Integer.class))).thenReturn(java.util.Optional.ofNullable(curvePoint));
+        when(curvePointR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(curvePoint));
     }
 
     @Test
