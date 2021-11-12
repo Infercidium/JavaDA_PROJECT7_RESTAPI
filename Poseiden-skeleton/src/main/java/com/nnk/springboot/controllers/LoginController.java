@@ -13,12 +13,22 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("app")
 public class LoginController {
 
+    /**
+     * Instantiation of LOGGER in order to inform in console.
+     */
     private static final Logger LOGGER
             = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * Instantiation of userInterface.
+     */
     @Autowired
     private UserI userS;
 
+    /**
+     * Links to the login page.
+     * @return the login page.
+     */
     @GetMapping("login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
@@ -27,6 +37,10 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * Refers to the page listing the users.
+     * @return the list of users.
+     */
     @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
@@ -36,6 +50,10 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * Installation of the error page.
+     * @return the error page.
+     */
     @GetMapping("error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();

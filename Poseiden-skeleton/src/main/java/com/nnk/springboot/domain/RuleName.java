@@ -16,28 +16,59 @@ import java.util.Objects;
 @Table(name = "rulename")
 @Getter @Setter @NoArgsConstructor
 public class RuleName {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    /**
+     * Attribute name corresponding to name choice.
+     */
     @NotBlank(message = "Name is mandatory")
     private String name;
 
+    /**
+     * Attribute description corresponding to description choice.
+     */
     @NotBlank(message = "Description is mandatory")
     private String description;
 
+    /**
+     * Attribute json corresponding to json choice.
+     */
     @NotBlank(message = "Json is mandatory")
     private String json;
 
+    /**
+     * Attribute template corresponding to template choice.
+     */
     @NotBlank(message = "Template is mandatory")
     private String template;
 
+    /**
+     * Attribute sqlStr corresponding to sqlStr choice.
+     */
     @NotBlank(message = "SqlStr is mandatory")
     private String sqlStr;
 
+    /**
+     * Attribute sqlPart corresponding to sqlPart choice.
+     */
     @NotBlank(message = "SqlPart is mandatory")
     private String sqlPart;
 
+    /**
+     * Test constructor.
+     * @param nameC attribute.
+     * @param descriptionC attribute.
+     * @param jsonC attribute.
+     * @param templateC attribute.
+     * @param sqlStrC attribute.
+     * @param sqlPartC attribute.
+     */
     public RuleName(final String nameC, final String descriptionC,
                     final String jsonC, final String templateC,
                     final String sqlStrC, final String sqlPartC) {
@@ -49,6 +80,10 @@ public class RuleName {
         this.sqlPart = sqlPartC;
     }
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "RuleName{"
@@ -62,6 +97,11 @@ public class RuleName {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -74,6 +114,10 @@ public class RuleName {
         return getId().equals(ruleName.getId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getId());

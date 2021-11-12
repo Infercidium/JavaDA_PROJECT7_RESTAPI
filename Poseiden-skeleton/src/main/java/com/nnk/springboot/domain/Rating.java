@@ -19,23 +19,46 @@ import java.util.Objects;
 @Table(name = "rating")
 @Getter @Setter @NoArgsConstructor
 public class Rating {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    /**
+     * Attribute moodysRating corresponding to moodysRating choice.
+     */
     @NotBlank(message = "MoodysRating is mandatory")
     private String moodysRating;
 
+    /**
+     * Attribute sandPRating corresponding to sandPRating choice.
+     */
     @NotBlank(message = "SandPRating is mandatory")
     private String sandPRating;
 
+    /**
+     * Attribute fitchRating corresponding to fitchRating choice.
+     */
     @NotBlank(message = "FitchRating is mandatory")
     private String fitchRating;
 
+    /**
+     * Attribute orderNumber corresponding to orderNumber choice.
+     */
     @NotNull
     @Digits(integer = Digit.ENTIER, fraction = 0)
     private Integer orderNumber;
 
+    /**
+     * Test constructor.
+     * @param moodysRatingC attribute.
+     * @param sandPRatingC attribute.
+     * @param fitchRatingC attribute.
+     * @param orderNumberC attribute.
+     */
     public Rating(final String moodysRatingC, final String sandPRatingC,
                   final String fitchRatingC, final Integer orderNumberC) {
         this.moodysRating = moodysRatingC;
@@ -44,6 +67,10 @@ public class Rating {
         this.orderNumber = orderNumberC;
     }
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "Rating{"
@@ -55,6 +82,11 @@ public class Rating {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -67,6 +99,10 @@ public class Rating {
         return getId().equals(rating.getId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getId());

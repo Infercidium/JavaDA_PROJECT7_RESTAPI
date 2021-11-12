@@ -18,24 +18,47 @@ import java.util.Objects;
 @Table(name = "users")
 @Getter @Setter @NoArgsConstructor
 public class User {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    /**
+     * Attribute username corresponding to username choice.
+     */
     @NotBlank(message = "Username is mandatory")
     private String username;
 
+    /**
+     * The password attribute corresponds to the chosen password
+     * but with the constraints of 8 characters minimum
+     * including a letter in upper case, in lower case,
+     * a number and a symbol.
+     */
     @NotBlank(message = "Password is mandatory")
     @Length(min = Password.MIN,
             message = "The password must be at least 8 characters long")
     private String password;
 
+    /**
+     * Attribute fullname corresponding to fullname choice.
+     */
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
 
+    /**
+     * Attribute role corresponding to role choice (admin or user).
+     */
     @NotBlank(message = "Role is mandatory")
     private String role;
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "User{"
@@ -47,6 +70,11 @@ public class User {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -59,6 +87,10 @@ public class User {
         return getId().equals(user.getId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getId());

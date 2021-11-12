@@ -18,12 +18,23 @@ import javax.validation.Valid;
 @Controller
 public class TradeController {
 
+    /**
+     * Instantiation of LOGGER in order to inform in console.
+     */
     private static final Logger LOGGER
             = LoggerFactory.getLogger(TradeController.class);
 
+    /**
+     * Instantiation of tradeInterface.
+     */
     @Autowired
     private TradeI tradeS;
 
+    /**
+     * Displays the list of trade on the relevant page.
+     * @param model : the list to display on the page.
+     * @return the html page.
+     */
     @RequestMapping("/trade/list")
     public String home(final Model model) {
         model.addAttribute("trades", tradeS.getTrades());
@@ -31,12 +42,24 @@ public class TradeController {
         return "trade/list";
     }
 
+    /**
+     * Displays the trade add page.
+     * @param trade : to add.
+     * @return the html page.
+     */
     @GetMapping("/trade/add")
-    public String addUser(final Trade bid) {
+    public String addTrade(final Trade trade) {
         LOGGER.debug("Entering the new Trade");
         return "trade/add";
     }
 
+    /**
+     * Adds the entered Trade to the database.
+     * @param trade : to add.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the trade list if no error, otherwise the add page.
+     */
     @PostMapping("/trade/validate")
     public String validate(@Valid final Trade trade,
                            final BindingResult result, final Model model) {
@@ -50,6 +73,12 @@ public class TradeController {
         return "trade/add";
     }
 
+    /**
+     * Displays the trade edit page.
+     * @param id : trade to modify.
+     * @param model : displays the concerned trade.
+     * @return the html page.
+     */
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
                                  final Model model) {
@@ -59,6 +88,14 @@ public class TradeController {
         return "trade/update";
     }
 
+    /**
+     * Modifies the Trade entered the database.
+     * @param id : trade to modify.
+     * @param trade : modified trade.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the Trade list if no error, otherwise the modification page.
+     */
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") final Integer id,
                               @Valid final Trade trade,
@@ -74,6 +111,12 @@ public class TradeController {
         return "redirect:/trade/list";
     }
 
+    /**
+     * Removes the selected Trade from the database.
+     * @param id : trade to delete.
+     * @param model : the list to display on the next page.
+     * @return the list of trade.
+     */
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") final Integer id,
                               final Model model) {

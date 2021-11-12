@@ -18,12 +18,23 @@ import javax.validation.Valid;
 @Controller
 public class RatingController {
 
+    /**
+     * Instantiation of LOGGER in order to inform in console.
+     */
     private static final Logger LOGGER
             = LoggerFactory.getLogger(RatingController.class);
 
+    /**
+     * Instantiation of ratingInterface.
+     */
     @Autowired
     private RatingI ratingS;
 
+    /**
+     * Displays the list of rating on the relevant page.
+     * @param model : the list to display on the page.
+     * @return the html page.
+     */
     @RequestMapping("/rating/list")
     public String home(final Model model) {
         model.addAttribute("ratings", ratingS.getRatings());
@@ -31,12 +42,24 @@ public class RatingController {
         return "rating/list";
     }
 
+    /**
+     * Displays the rating add page.
+     * @param rating : to add.
+     * @return the html page.
+     */
     @GetMapping("/rating/add")
     public String addRatingForm(final Rating rating) {
         LOGGER.debug("Entering the new Rating");
         return "rating/add";
     }
 
+    /**
+     * Adds the entered Rating to the database.
+     * @param rating : to add.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the rating list if no error, otherwise the add page.
+     */
     @PostMapping("/rating/validate")
     public String validate(@Valid final Rating rating,
                            final BindingResult result, final Model model) {
@@ -50,6 +73,12 @@ public class RatingController {
         return "rating/add";
     }
 
+    /**
+     * Displays the rating edit page.
+     * @param id : rating to modify.
+     * @param model : displays the concerned rating.
+     * @return the html page.
+     */
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
                                  final Model model) {
@@ -59,6 +88,14 @@ public class RatingController {
         return "rating/update";
     }
 
+    /**
+     * Modifies the Rating entered the database.
+     * @param id : rating to modify.
+     * @param rating : modified rating.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the Rating list if no error, otherwise the modification page.
+     */
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") final Integer id,
                                @Valid final Rating rating,
@@ -74,6 +111,12 @@ public class RatingController {
         return "redirect:/rating/list";
     }
 
+    /**
+     * Removes the selected Rating from the database.
+     * @param id : rating to delete.
+     * @param model : the list to display on the next page.
+     * @return the list of rating.
+     */
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") final Integer id,
                                final Model model) {

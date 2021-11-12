@@ -2,7 +2,6 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -17,72 +16,141 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bidlist")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class BidList {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer bidListId;
 
+    /**
+     * Attribute account corresponding to account choice.
+     */
     @NotBlank(message = "Account is mandatory")
     private String account;
 
+    /**
+     * Attribute type corresponding to type choice.
+     */
     @NotBlank(message = "Type is mandatory")
     private String type;
 
+    /**
+     * Attribute bidQuantity corresponding to bidQuantity choice.
+     */
     @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double bidQuantity;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double askQuantity;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double bid;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double ask;
 
-    //@NotBlank(message = "Benchmark is mandatory")
+    /**
+     * Not use.
+     */
     private String benchmark;
 
+    /**
+     * Not use.
+     */
     private LocalDateTime bidListDate;
 
-    //@NotBlank(message = "Commentary is mandatory")
+    /**
+     * Not use.
+     */
     private String commentary;
 
-    //@NotBlank(message = "Security is mandatory")
+    /**
+     * Not use.
+     */
     private String security;
 
-    //@NotBlank(message = "Status is mandatory")
+    /**
+     * Not use.
+     */
     private String status;
 
-    //@NotBlank(message = "Trader is mandatory")
+    /**
+     * Not use.
+     */
     private String trader;
 
-    //@NotBlank(message = "Book is mandatory")
+    /**
+     * Not use.
+     */
     private String book;
 
-    //@NotBlank(message = "CreationName is mandatory")
+    /**
+     * Not use.
+     */
     private String creationName;
 
+    /**
+     * Attribute creationDate corresponding to creationDate of Bid.
+     */
     private LocalDateTime creationDate;
 
-    //@NotBlank(message = "RevisionName is mandatory")
+    /**
+     * Not use.
+     */
     private String revisionName;
 
+    /**
+     * Attribute revisionDate corresponding to last update date Bid.
+     */
     private LocalDateTime revisionDate;
 
-    //@NotBlank(message = "DealName is mandatory")
+    /**
+     * Not use.
+     */
     private String dealName;
 
-    //@NotBlank(message = "DealType is mandatory")
+    /**
+     * Not use.
+     */
     private String dealType;
 
-    //@NotBlank(message = "SourceListId is mandatory")
+    /**
+     * Not use.
+     */
     private String sourceListId;
 
-    //@NotBlank(message = "Side is mandatory")
+    /**
+     * Not use.
+     */
     private String side;
 
+    /**
+     * Basic Constructor.
+     */
+    public BidList() {
+        if (creationDate == null) {
+            creationDate = LocalDateTime.now();
+        } else {
+            revisionDate = LocalDateTime.now();
+        }
+    }
+
+    /**
+     * Test Constructor.
+     * @param accountC attribute.
+     * @param typeC attribute.
+     * @param bidQuantityC attribute.
+     */
     public BidList(final String accountC, final String typeC,
                    final Double bidQuantityC) {
         this.account = accountC;
@@ -90,6 +158,10 @@ public class BidList {
         this.bidQuantity = bidQuantityC;
     }
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "BidList{"
@@ -118,6 +190,11 @@ public class BidList {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -130,6 +207,10 @@ public class BidList {
         return getBidListId().equals(bidList.getBidListId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getBidListId());

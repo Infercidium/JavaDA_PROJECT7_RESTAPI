@@ -19,16 +19,30 @@ import java.util.List;
 @Service
 public class UserService implements UserI {
 
+    /**
+     * Instantiation of LOGGER in order to inform in console.
+     */
     private static final Logger LOGGER
             = LoggerFactory.getLogger(UserService.class);
 
+    /**
+     * Instantiation of userRepository.
+     */
     @Autowired
     private UserRepository userR;
 
+    /**
+     * Instantiation of BCryptPasswordEncoder.
+     */
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     //Service
+
+    /**
+     * Add / Update a user in the database.
+     * @param user : to add / update.
+     */
     @Override
     public void postUser(final User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -36,6 +50,11 @@ public class UserService implements UserI {
         LOGGER.debug("User Save");
     }
 
+    /**
+     * Find the user who has the provided id.
+     * @param id : to find.
+     * @return the user.
+     */
     @Override
     public User getUser(final int id) {
         LOGGER.debug("User found");
@@ -43,12 +62,20 @@ public class UserService implements UserI {
                 new IllegalArgumentException("Invalid user Id:" + id));
     }
 
+    /**
+     * Find all users.
+     * @return the list of users.
+     */
     @Override
     public List<User> getUsers() {
         LOGGER.debug("Users found");
         return userR.findAll();
     }
 
+    /**
+     * Removes the user with the provided id.
+     * @param id : to delete.
+     */
     @Override
     public void deleteUser(final int id) {
         User user = getUser(id);

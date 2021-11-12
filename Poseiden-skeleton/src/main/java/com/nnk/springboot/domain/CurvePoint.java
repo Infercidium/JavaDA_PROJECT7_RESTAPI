@@ -2,7 +2,6 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -18,26 +17,62 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "curvepoint")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class CurvePoint {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    /**
+     * Attribute CurveId corresponding to CurveId choice.
+     */
     @NotNull
     @Digits(integer = Digit.ENTIER, fraction = 0)
     private Integer curveId;
 
+    /**
+     * Attribute asOfDate corresponding to last update CurvePoint.
+     */
     private LocalDateTime asOfDate;
 
+    /**
+     * Attribute term corresponding to term choice.
+     */
     @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double term;
 
+    /**
+     * Attribute value corresponding to value choice.
+     */
     @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double value;
 
+    /**
+     * Attribute creationDate corresponding to creationDate of CurvePoint.
+     */
     private LocalDateTime creationDate;
 
+    /**
+     * Basic constructor.
+     */
+    public CurvePoint() {
+        if (creationDate == null) {
+            creationDate = LocalDateTime.now();
+        } else {
+            asOfDate = LocalDateTime.now();
+        }
+    }
+
+    /**
+     * Test constructor.
+     * @param curveIdC attribute.
+     * @param termC attribute.
+     * @param valueC attribute.
+     */
     public CurvePoint(final Integer curveIdC,
                       final Double termC, final Double valueC) {
         this.curveId = curveIdC;
@@ -45,6 +80,10 @@ public class CurvePoint {
         this.value = valueC;
     }
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "CurvePoint{"
@@ -57,6 +96,11 @@ public class CurvePoint {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -69,6 +113,10 @@ public class CurvePoint {
         return getId().equals(that.getId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getId());

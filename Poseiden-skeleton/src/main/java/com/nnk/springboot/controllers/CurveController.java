@@ -18,12 +18,23 @@ import javax.validation.Valid;
 @Controller
 public class CurveController {
 
+    /**
+     * Instantiation of LOGGER in order to inform in console.
+     */
     private static final Logger LOGGER
             = LoggerFactory.getLogger(CurveController.class);
 
+    /**
+     * Instantiation of curvePointInterface.
+     */
     @Autowired
     private CurvePointI curvePointS;
 
+    /**
+     * Displays the list of curvePoint on the relevant page.
+     * @param model : the list to display on the page.
+     * @return the html page.
+     */
     @RequestMapping("/curvePoint/list")
     public String home(final Model model) {
         model.addAttribute("curvePoints", curvePointS.getCurvePoints());
@@ -31,12 +42,24 @@ public class CurveController {
         return "curvePoint/list";
     }
 
+    /**
+     * Displays the curvePoint add page.
+     * @param curve : to add.
+     * @return the html page.
+     */
     @GetMapping("/curvePoint/add")
-    public String addBidForm(final CurvePoint bid) {
+    public String addCurveForm(final CurvePoint curve) {
         LOGGER.debug("Entering the new Curve");
         return "curvePoint/add";
     }
 
+    /**
+     * Adds the entered Curve to the database.
+     * @param curvePoint : to add.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the curvePoint list if no error, otherwise the add page.
+     */
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid final CurvePoint curvePoint,
                            final BindingResult result, final Model model) {
@@ -50,6 +73,12 @@ public class CurveController {
         return "curvePoint/add";
     }
 
+    /**
+     * Displays the curvePoint edit page.
+     * @param id : curve to modify.
+     * @param model : displays the concerned curve.
+     * @return the html page.
+     */
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
                                  final Model model) {
@@ -59,8 +88,16 @@ public class CurveController {
         return "curvePoint/update";
     }
 
+    /**
+     * Modifies the Curve entered the database.
+     * @param id : curve to modify.
+     * @param curvePoint : modified curve.
+     * @param result : check if there is an error.
+     * @param model : the list to display on the next page.
+     * @return the curvePoint list if no error, otherwise the modification page.
+     */
     @PostMapping("/curvePoint/update/{id}")
-    public String updateBid(@PathVariable("id") final Integer id,
+    public String updateCurve(@PathVariable("id") final Integer id,
                             @Valid final CurvePoint curvePoint,
                              final BindingResult result, final Model model) {
         if (result.hasErrors()) {
@@ -74,8 +111,14 @@ public class CurveController {
         return "redirect:/curvePoint/list";
     }
 
+    /**
+     * Removes the selected Curve from the database.
+     * @param id : curve to delete.
+     * @param model : the list to display on the next page.
+     * @return the list of curvePoint.
+     */
     @GetMapping("/curvePoint/delete/{id}")
-    public String deleteBid(@PathVariable("id") final Integer id,
+    public String deleteCurve(@PathVariable("id") final Integer id,
                             final Model model) {
         curvePointS.deleteCurvePoint(id);
         model.addAttribute("curvePoints", curvePointS.getCurvePoints());

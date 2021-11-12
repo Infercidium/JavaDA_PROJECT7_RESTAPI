@@ -9,5 +9,10 @@ public interface UserRepository
         extends JpaRepository<User, Integer>,
                 JpaSpecificationExecutor<User> {
 
+    /**
+     * Find in the database a user with his username.
+     * @param username used.
+     * @return user.
+     */
     User findByUsernameIgnoreCase(String username);
 }

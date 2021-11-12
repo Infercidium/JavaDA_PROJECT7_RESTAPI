@@ -2,7 +2,6 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -18,74 +17,144 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trade")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class Trade {
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tradeId;
 
+    /**
+     * Attribute CurveId corresponding to CurveId choice.
+     */
     @NotBlank(message = "Account is mandatory")
     private String account;
 
+    /**
+     * Attribute CurveId corresponding to CurveId choice.
+     */
     @NotBlank(message = "Type is mandatory")
     private String type;
 
+    /**
+     * Attribute CurveId corresponding to CurveId choice.
+     */
     @Digits(integer = Digit.ENTIER, fraction = 2)
     private Double buyQuantity;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double sellQuantity;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double buyPrice;
 
-    //@Digits(integer = Digit.Entier, fraction = 2)
+    /**
+     * Not use.
+     */
     private Double sellPrice;
 
-    //@NotBlank(message = "Benchmark is mandatory")
+    /**
+     * Not use.
+     */
     private String benchmark;
 
+    /**
+     * Not use.
+     */
     private LocalDateTime tradeDate;
 
-    //@NotBlank(message = "Security is mandatory")
+    /**
+     * Not use.
+     */
     private String security;
 
-    //@NotBlank(message = "Status is mandatory")
+    /**
+     * Not use.
+     */
     private String status;
 
-    //@NotBlank(message = "Trader is mandatory")
+    /**
+     * Not use.
+     */
     private String trader;
 
-    //@NotBlank(message = "Book is mandatory")
+    /**
+     * Not use.
+     */
     private String book;
 
-    //@NotBlank(message = "CreationName is mandatory")
+    /**
+     * Not use.
+     */
     private String creationName;
 
+    /**
+     * Attribute creationDate corresponding to creationDate of Trade.
+     */
     private LocalDateTime creationDate;
 
-    //@NotBlank(message = "RevisionName is mandatory")
+    /**
+     * Not use.
+     */
     private String revisionName;
 
+    /**
+     * Attribute revisionDate corresponding to last update date Trade.
+     */
     private LocalDateTime revisionDate;
 
-    //@NotBlank(message = "DealName is mandatory")
+    /**
+     * Not use.
+     */
     private String dealName;
 
-    //@NotBlank(message = "DealType is mandatory")
+    /**
+     * Not use.
+     */
     private String dealType;
 
-    //@NotBlank(message = "SourceListId is mandatory")
+    /**
+     * Not use.
+     */
     private String sourceListId;
 
-    //@NotBlank(message = "Side is mandatory")
+    /**
+     * Not use.
+     */
     private String side;
 
+    /**
+     * Basic constructor.
+     */
+    public Trade() {
+        if (creationDate == null) {
+            creationDate = LocalDateTime.now();
+        } else {
+            revisionDate = LocalDateTime.now();
+        }
+    }
+
+    /**
+     * Test constructor.
+     * @param accountC attribute.
+     * @param typeC attribute.
+     */
     public Trade(final String accountC, final String typeC) {
         this.account = accountC;
         this.type = typeC;
     }
 
+    /**
+     * ToString method.
+     * @return toString.
+     */
     @Override
     public String toString() {
         return "Trade{"
@@ -113,6 +182,11 @@ public class Trade {
                 + '}';
     }
 
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -125,6 +199,10 @@ public class Trade {
         return getTradeId().equals(trade.getTradeId());
     }
 
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getTradeId());
