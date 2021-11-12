@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Password;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class User {
 
     /**
