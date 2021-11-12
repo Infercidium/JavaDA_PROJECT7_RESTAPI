@@ -4,7 +4,8 @@ public final class Password {
     private Password() { }
 
     /**
-     * Minimum character for the password.
+     * Regex for password.
      */
-    public static final int MIN = 8;
+    public static final String REGEX
+         = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*@#$%^&+=])(?=\\S+$).{8,}$";
 }
