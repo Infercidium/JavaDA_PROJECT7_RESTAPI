@@ -21,7 +21,7 @@ public class RuleName {
      * Attribute id corresponding to id generate.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

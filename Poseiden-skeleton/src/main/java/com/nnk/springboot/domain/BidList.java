@@ -23,7 +23,7 @@ public class BidList {
      * Attribute id corresponding to id generate.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bidListId;
 
     /**
