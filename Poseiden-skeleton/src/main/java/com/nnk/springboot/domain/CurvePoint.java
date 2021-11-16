@@ -1,15 +1,120 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
+import com.nnk.springboot.constants.Digit;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
 @Table(name = "curvepoint")
+@Getter @Setter
 public class CurvePoint {
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
+
+    /**
+     * Attribute id corresponding to id generate.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    /**
+     * Attribute CurveId corresponding to CurveId choice.
+     */
+    @NotNull
+    @Digits(integer = Digit.ENTIER, fraction = 0)
+    private Integer curveId;
+
+    /**
+     * Attribute asOfDate corresponding to last update CurvePoint.
+     */
+    private LocalDateTime asOfDate;
+
+    /**
+     * Attribute term corresponding to term choice.
+     */
+    @Digits(integer = Digit.ENTIER, fraction = 2)
+    private Double term;
+
+    /**
+     * Attribute value corresponding to value choice.
+     */
+    @Digits(integer = Digit.ENTIER, fraction = 2)
+    private Double value;
+
+    /**
+     * Attribute creationDate corresponding to creationDate of CurvePoint.
+     */
+    private LocalDateTime creationDate;
+
+    /**
+     * Basic constructor.
+     */
+    public CurvePoint() {
+            creationDate = LocalDateTime.now();
+    }
+
+    /**
+     * Test constructor.
+     * @param curveIdC attribute.
+     * @param termC attribute.
+     * @param valueC attribute.
+     */
+    public CurvePoint(final Integer curveIdC,
+                      final Double termC, final Double valueC) {
+        this.curveId = curveIdC;
+        this.term = termC;
+        this.value = valueC;
+    }
+
+    /**
+     * ToString method.
+     * @return toString.
+     */
+    @Override
+    public String toString() {
+        return "CurvePoint{"
+                + "id = " + id
+                + ", curveId = " + curveId
+                + ", asOfDate = " + asOfDate
+                + ", term = " + term
+                + ", value = " + value
+                + ", creationDate = " + creationDate
+                + '}';
+    }
+
+    /**
+     * Equals method.
+     * @param o : element to compare.
+     * @return result of the comparison.
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CurvePoint)) {
+            return false;
+        }
+        CurvePoint that = (CurvePoint) o;
+        return getId().equals(that.getId());
+    }
+
+    /**
+     * HashCode method.
+     * @return hashCode.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
