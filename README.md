@@ -15,17 +15,24 @@ A demonstration script to run in the shema is also available.
 ### APPLICATION
 The application is composed of html page allowing various actions and displaying corresponding information.
 
-1. `Home` WIP
-  * ---
-  * ---
-
-2. `Login` WIP
-  * ---
-  * ---
+1. `Home`
+  * Available with a simple `/`.
+  * Gives access to Login and user management.
+  * 
+2. `Login`
+  * Contains classic login and login by GitHub.
+  * The classic connection requires the username and the user password, this one must have an upper case, a lower case, a number, a special character and be at least 8 characters long.
   
-3. `bidList` & `curvePoint` & `rating` & `ruleName` & `trade` & `user` WIP
-  * `list` `add` `update`
-  * `validate` `delete`
+3. `bidList` & `curvePoint` & `rating` & `ruleName` & `trade` & `user`
+
+Each of its "links" contains 3 visible and 2 hidden subcategories:
+  
+  * `list`: Displays a table containing all the entities, an edit and delete button for each of them. Above the table an add button.
+  * `add`: Displays a form for adding the entity, the fields to be filled in correspond to the attribute.
+  * `update`: Displays an entity update form, the fields to fill out correspond to the attribute to modify. (often identical to Add)
+---
+  * `validate`: Check that the entered fields correspond to what is expected from the attribute side. (not visible to the user)
+  * `delete`: Delete the selected entity, is not visible directly but indirectly from the list where the entity no longer exists.
   
 
 ## Launch
