@@ -59,7 +59,7 @@ Password : Demonstration1*
 ## Testing
 This project has Units tests written.
 It is possible to have access to Surefire Report and Jacoco to visualize the execution time and the coverage of the tests following this path:
-`C:/[User]/[Project storage]/JavaDA_PROJECT7_RESTAPI/Poseiden-skeleton/target/site/project-reports.html`
+`Poseiden-skeleton/target/site/project-reports.html`
 
 ### Test Report
 
