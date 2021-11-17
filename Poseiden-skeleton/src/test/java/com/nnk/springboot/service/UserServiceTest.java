@@ -4,6 +4,8 @@ import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,8 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -37,7 +41,21 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        when(userR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(user));
+        when(userR.findById(isA(Integer.class))).thenAnswer(new Answer<Optional<User>>() {
+            /**
+             * @param invocation the invocation on the mock.
+             * @return the value to be returned
+             * @throws Throwable the throwable to be thrown
+             */
+            @Override
+            public Optional<User> answer(InvocationOnMock invocation) throws Throwable {
+                Integer integer = invocation.getArgument(0, Integer.class);
+                if (integer == 0) {
+                    return Optional.ofNullable(null);
+                }
+                return Optional.of(user);
+            }
+        });
     }
 
     @Test
@@ -55,8 +73,13 @@ class UserServiceTest {
 
     @Test
     void getUser() {
-        User userResult = userS.getUser(isA(Integer.class));
+        User userResult = userS.getUser(1);
         assertEquals(user, userResult);
+    }
+
+    @Test
+    void getUserFail() {
+        assertThrows(IllegalArgumentException.class, ()->userS.getUser(0));
     }
 
     @Test
@@ -68,7 +91,7 @@ class UserServiceTest {
 
     @Test
     void deleteUser() {
-        userS.deleteUser(isA(Integer.class));
+        userS.deleteUser(1);
         verify(userR, times(1)).delete(user);
     }
 
