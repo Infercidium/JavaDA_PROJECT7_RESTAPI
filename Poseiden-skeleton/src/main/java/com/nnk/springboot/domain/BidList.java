@@ -2,9 +2,16 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +23,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bidlist")
-@Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
+@Getter @Setter @NoArgsConstructor
 public class BidList {
 
     /**
@@ -95,23 +103,27 @@ public class BidList {
     private String book;
 
     /**
-     * Not use.
+     * Attribute creationName is User creator.
      */
+    @CreatedBy
     private String creationName;
 
     /**
      * Attribute creationDate corresponding to creationDate of Bid.
      */
+    @CreatedDate
     private LocalDateTime creationDate;
 
     /**
-     * Not use.
+     * Attribute revisionName is last User to have modified it.
      */
+    @LastModifiedBy
     private String revisionName;
 
     /**
      * Attribute revisionDate corresponding to last update date Bid.
      */
+    @LastModifiedDate
     private LocalDateTime revisionDate;
 
     /**
@@ -133,13 +145,6 @@ public class BidList {
      * Not use.
      */
     private String side;
-
-    /**
-     * Basic Constructor.
-     */
-    public BidList() {
-        creationDate = LocalDateTime.now();
-    }
 
     /**
      * Test Constructor.

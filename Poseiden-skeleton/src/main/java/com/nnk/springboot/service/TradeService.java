@@ -27,13 +27,28 @@ public class TradeService implements TradeI {
     //Service
 
     /**
-     * Add / Update a trade in the database.
-     * @param trade : to add / update.
+     * Add a trade in the database.
+     * @param trade : to add.
      */
     @Override
     public void postTrade(final Trade trade) {
         tradeR.save(trade);
         LOGGER.debug("Trade save");
+    }
+
+    /**
+     * Update a trade in the database.
+     * @param trade : to update.
+     * @param id : to find origin Trade.
+     */
+    @Override
+    public void updateTrade(final Trade trade, final Integer id) {
+        Trade originTrade = getTrade(id);
+        trade.setTradeId(id);
+        trade.setCreationDate(originTrade.getCreationDate());
+        trade.setCreationName(originTrade.getCreationName());
+        tradeR.save(trade);
+        LOGGER.debug("Trade update");
     }
 
     /**

@@ -13,6 +13,13 @@ public interface RatingI {
     void postRating(Rating rating);
 
     /**
+     * Update a rating in the database.
+     * @param rating : to update.
+     * @param id : to set id.
+     */
+    void updateRating(Rating rating, Integer id);
+
+    /**
      * Find the rating which has the given id.
      * @param id : to find.
      * @return the rating.

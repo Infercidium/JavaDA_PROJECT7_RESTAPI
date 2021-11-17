@@ -13,6 +13,13 @@ public interface TradeI {
     void postTrade(Trade trade);
 
     /**
+     * Update a trade in the database.
+     * @param trade : to update.
+     * @param id : to find origin Trade.
+     */
+    void updateTrade(Trade trade, Integer id);
+
+    /**
      * Find the trade which has the given id.
      * @param id : to find.
      * @return the trade.

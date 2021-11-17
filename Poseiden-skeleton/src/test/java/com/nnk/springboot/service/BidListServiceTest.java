@@ -40,6 +40,13 @@ class BidListServiceTest {
     }
 
     @Test
+    void updateBidList() {
+        bidListS.updateBidList(bidList, 2);
+        verify(bidListR, times(1)).save(bidList);
+        assertEquals(2, bidList.getBidListId());
+    }
+
+    @Test
     void getBidList() {
         BidList bidListResult = bidListS.getBidList(isA(Integer.class));
         assertEquals(bidList, bidListResult);

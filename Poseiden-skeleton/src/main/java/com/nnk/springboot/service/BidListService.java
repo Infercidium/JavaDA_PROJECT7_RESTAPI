@@ -27,13 +27,28 @@ public class BidListService implements BidListI {
     //Service
 
     /**
-     * Add / Update a bidList in the database.
-     * @param bidList : to add / update.
+     * Add a bidList in the database.
+     * @param bidList : to add.
      */
     @Override
     public void postBidList(final BidList bidList) {
         bidListR.save(bidList);
         LOGGER.debug("BidList save");
+    }
+
+    /**
+     * Update a bidList in the database.
+     * @param bidList : to update.
+     * @param id : to find origin bidList.
+     */
+    @Override
+    public void updateBidList(final BidList bidList, final Integer id) {
+        BidList originBid = getBidList(id);
+        bidList.setBidListId(id);
+        bidList.setCreationDate(originBid.getCreationDate());
+        bidList.setCreationName(originBid.getCreationName());
+        bidListR.save(bidList);
+        LOGGER.debug("BidList update");
     }
 
     /**

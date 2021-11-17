@@ -2,9 +2,14 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +22,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "curvepoint")
-@Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
+@Getter @Setter @NoArgsConstructor
 public class CurvePoint {
 
     /**
@@ -37,6 +43,7 @@ public class CurvePoint {
     /**
      * Attribute asOfDate corresponding to last update CurvePoint.
      */
+    @LastModifiedDate
     private LocalDateTime asOfDate;
 
     /**
@@ -54,14 +61,8 @@ public class CurvePoint {
     /**
      * Attribute creationDate corresponding to creationDate of CurvePoint.
      */
+    @CreatedDate
     private LocalDateTime creationDate;
-
-    /**
-     * Basic constructor.
-     */
-    public CurvePoint() {
-            creationDate = LocalDateTime.now();
-    }
 
     /**
      * Test constructor.

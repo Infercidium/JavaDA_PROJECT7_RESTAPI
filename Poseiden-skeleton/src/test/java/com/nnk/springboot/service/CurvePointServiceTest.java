@@ -40,6 +40,13 @@ class CurvePointServiceTest {
     }
 
     @Test
+    void updateCurvePoint() {
+        curvePointS.updateCurvePoint(curvePoint, 2);
+        verify(curvePointR, times(1)).save(curvePoint);
+        assertEquals(2, curvePoint.getId());
+    }
+
+    @Test
     void getCurvePoint() {
         CurvePoint curvePointResult = curvePointS.getCurvePoint(isA(Integer.class));
         assertEquals(curvePoint, curvePointResult);

@@ -2,9 +2,14 @@ package com.nnk.springboot.domain;
 
 import com.nnk.springboot.constants.Digit;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +22,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trade")
-@Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
+@Getter @Setter @NoArgsConstructor
 public class Trade {
 
     /**
@@ -91,23 +97,25 @@ public class Trade {
     private String book;
 
     /**
-     * Not use.
+     * Attribute creationName is User creator.
      */
     private String creationName;
 
     /**
      * Attribute creationDate corresponding to creationDate of Trade.
      */
+    @CreatedDate
     private LocalDateTime creationDate;
 
     /**
-     * Not use.
+     * Attribute revisionName is last User to have modified it.
      */
     private String revisionName;
 
     /**
      * Attribute revisionDate corresponding to last update date Trade.
      */
+    @LastModifiedDate
     private LocalDateTime revisionDate;
 
     /**
@@ -129,13 +137,6 @@ public class Trade {
      * Not use.
      */
     private String side;
-
-    /**
-     * Basic constructor.
-     */
-    public Trade() {
-            creationDate = LocalDateTime.now();
-    }
 
     /**
      * Test constructor.

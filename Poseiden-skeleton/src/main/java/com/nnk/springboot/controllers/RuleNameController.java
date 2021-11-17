@@ -104,8 +104,7 @@ public class RuleNameController {
             LOGGER.error("Entry error");
             return "ruleName/update";
         }
-        ruleName.setId(id);
-        ruleNameS.postRuleName(ruleName);
+        ruleNameS.updateRuleName(ruleName, id);
         model.addAttribute("ruleNames", ruleNameS.getRuleNames());
         LOGGER.info("RuleName changed");
         return "redirect:/ruleName/list";

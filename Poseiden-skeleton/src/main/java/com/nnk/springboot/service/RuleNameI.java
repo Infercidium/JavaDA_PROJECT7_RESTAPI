@@ -13,6 +13,13 @@ public interface RuleNameI {
     void postRuleName(RuleName ruleName);
 
     /**
+     * Update a ruleName in the database.
+     * @param ruleName : to update.
+     * @param id : to set id.
+     */
+    void updateRuleName(RuleName ruleName, Integer id);
+
+    /**
      * Find the ruleName which has the given id.
      * @param id : to find.
      * @return the ruleName.

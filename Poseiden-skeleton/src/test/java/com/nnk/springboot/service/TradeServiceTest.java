@@ -40,6 +40,13 @@ class TradeServiceTest {
     }
 
     @Test
+    void updateTrade() {
+        tradeS.updateTrade(trade, 2);
+        verify(tradeR,times(1)).save(trade);
+        assertEquals(2, trade.getTradeId());
+    }
+
+    @Test
     void getTrade() {
         Trade tradeResult = tradeS.getTrade(isA(Integer.class));
         assertEquals(trade, tradeResult);

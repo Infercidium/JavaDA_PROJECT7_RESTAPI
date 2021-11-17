@@ -14,6 +14,13 @@ public interface UserI extends UserDetailsService {
     void postUser(User user);
 
     /**
+     * Update a user in the database.
+     * @param user : to update.
+     * @param id : to set id.
+     */
+    void updateUser(User user, Integer id);
+
+    /**
      * Find the user who has the provided id.
      * @param id : to find.
      * @return the user.
