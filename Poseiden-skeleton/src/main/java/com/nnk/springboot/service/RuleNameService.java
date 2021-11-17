@@ -43,8 +43,14 @@ public class RuleNameService implements RuleNameI {
      */
     @Override
     public void updateRuleName(final RuleName ruleName, final Integer id) {
-        ruleName.setId(id);
-        ruleNameR.save(ruleName);
+        RuleName originRule = getRuleName(id);
+        originRule.setName(ruleName.getName());
+        originRule.setDescription(ruleName.getDescription());
+        originRule.setJson(ruleName.getJson());
+        originRule.setTemplate(ruleName.getTemplate());
+        originRule.setSqlStr(ruleName.getSqlStr());
+        originRule.setSqlPart(ruleName.getSqlPart());
+        ruleNameR.save(originRule);
         LOGGER.debug("RuleName save");
     }
 

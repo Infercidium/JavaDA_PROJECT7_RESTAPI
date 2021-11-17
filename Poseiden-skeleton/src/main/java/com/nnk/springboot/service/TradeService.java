@@ -44,10 +44,10 @@ public class TradeService implements TradeI {
     @Override
     public void updateTrade(final Trade trade, final Integer id) {
         Trade originTrade = getTrade(id);
-        trade.setTradeId(id);
-        trade.setCreationDate(originTrade.getCreationDate());
-        trade.setCreationName(originTrade.getCreationName());
-        tradeR.save(trade);
+        originTrade.setAccount(trade.getAccount());
+        originTrade.setType(trade.getType());
+        originTrade.setBuyQuantity(trade.getBuyQuantity());
+        tradeR.save(originTrade);
         LOGGER.debug("Trade update");
     }
 
