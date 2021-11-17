@@ -104,8 +104,7 @@ public class TradeController {
             LOGGER.error("Entry error");
             return "trade/update";
         }
-        trade.setTradeId(id);
-        tradeS.postTrade(trade);
+        tradeS.updateTrade(trade, id);
         model.addAttribute("trades", tradeS.getTrades());
         LOGGER.info("Modified trade");
         return "redirect:/trade/list";

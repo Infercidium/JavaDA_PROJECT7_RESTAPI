@@ -27,13 +27,25 @@ public class RatingService implements RatingI {
     //Service
 
     /**
-     * Add / Update a rating in the database.
-     * @param rating : to add / update.
+     * Add a rating in the database.
+     * @param rating : to update.
      */
     @Override
     public void postRating(final Rating rating) {
         ratingR.save(rating);
         LOGGER.debug("Rating save");
+    }
+
+    /**
+     * Update a rating in the database.
+     * @param rating : to update.
+     * @param id : to set id.
+     */
+    @Override
+    public void updateRating(final Rating rating, final Integer id) {
+        rating.setId(id);
+        ratingR.save(rating);
+        LOGGER.debug("Rating update");
     }
 
     /**

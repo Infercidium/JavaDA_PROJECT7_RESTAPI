@@ -40,6 +40,13 @@ class RatingServiceTest {
     }
 
     @Test
+    void updateRating() {
+        ratingS.updateRating(rating, 2);
+        verify(ratingR, times(1)).save(rating);
+        assertEquals(2, rating.getId());
+    }
+
+    @Test
     void getRating() {
         Rating ratingResult = ratingS.getRating(isA(Integer.class));
         assertEquals(rating, ratingResult);

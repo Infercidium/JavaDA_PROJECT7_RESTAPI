@@ -13,6 +13,13 @@ public interface CurvePointI {
     void postCurvePoint(CurvePoint curvePoint);
 
     /**
+     * Update a curvePoint in the database.
+     * @param curvePoint : to update.
+     * @param id : to find origin CurvePoint.
+     */
+    void updateCurvePoint(CurvePoint curvePoint, Integer id);
+
+    /**
      * Find the curvePoint which has the given id.
      * @param id : to find.
      * @return the curvePoint.

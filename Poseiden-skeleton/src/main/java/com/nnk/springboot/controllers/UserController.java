@@ -105,9 +105,7 @@ public class UserController {
             LOGGER.error("Entry error");
             return "user/update";
         }
-
-        user.setId(id);
-        userS.postUser(user);
+        userS.updateUser(user, id);
         model.addAttribute("users", userS.getUsers());
         LOGGER.info("Modified user");
         return "redirect:/user/list";

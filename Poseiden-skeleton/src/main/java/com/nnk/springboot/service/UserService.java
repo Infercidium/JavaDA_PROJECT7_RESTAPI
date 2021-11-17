@@ -40,14 +40,27 @@ public class UserService implements UserI {
     //Service
 
     /**
-     * Add / Update a user in the database.
-     * @param user : to add / update.
+     * Add a user in the database.
+     * @param user : to add.
      */
     @Override
     public void postUser(final User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userR.save(user);
         LOGGER.debug("User Save");
+    }
+
+    /**
+     * Update a user in the database.
+     * @param user : to update.
+     * @param id : to set id.
+     */
+    @Override
+    public void updateUser(final User user, final Integer id) {
+        user.setId(id);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userR.save(user);
+        LOGGER.debug("User Update");
     }
 
     /**

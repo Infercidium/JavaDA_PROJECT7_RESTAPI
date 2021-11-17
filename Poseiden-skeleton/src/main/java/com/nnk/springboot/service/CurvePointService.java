@@ -19,7 +19,7 @@ public class CurvePointService implements CurvePointI {
             = LoggerFactory.getLogger(CurvePointService.class);
 
     /**
-     * Instantiation of corvePointRepository.
+     * Instantiation of curvePointRepository.
      */
     @Autowired
     private CurvePointRepository curvePointR;
@@ -27,13 +27,28 @@ public class CurvePointService implements CurvePointI {
     //Service
 
     /**
-     * Add / Update a curvePoint in the database.
-     * @param curvePoint : to add / update.
+     * Update a curvePoint in the database.
+     * @param curvePoint : to add.
      */
     @Override
     public void postCurvePoint(final CurvePoint curvePoint) {
         curvePointR.save(curvePoint);
         LOGGER.debug("CurvePoint save");
+    }
+
+    /**
+     * Update a curvePoint in the database.
+     * @param curvePoint : to update.
+     * @param id : to find origin CurvePoint.
+     */
+    @Override
+    public void updateCurvePoint(final CurvePoint curvePoint,
+                                 final Integer id) {
+        CurvePoint originCurve = getCurvePoint(id);
+        curvePoint.setId(id);
+        curvePoint.setCreationDate(originCurve.getCreationDate());
+        curvePointR.save(curvePoint);
+        LOGGER.debug("CurvePoint update");
     }
 
     /**

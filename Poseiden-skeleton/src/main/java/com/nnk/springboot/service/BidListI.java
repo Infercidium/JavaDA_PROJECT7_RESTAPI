@@ -13,6 +13,13 @@ public interface BidListI {
     void postBidList(BidList bidList);
 
     /**
+     * Update a bidList in the database.
+     * @param bidList : to update.
+     * @param id : to find origin bidList.
+     */
+    void updateBidList(BidList bidList, Integer id);
+
+    /**
      * Find the bidList which has the given id.
      * @param id : to find.
      * @return the bidList.

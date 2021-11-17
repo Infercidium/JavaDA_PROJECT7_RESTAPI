@@ -107,8 +107,7 @@ public class BidListController {
             LOGGER.error("Entry error");
             return "bidList/update";
         }
-        bidList.setBidListId(id);
-        bidListS.postBidList(bidList);
+        bidListS.updateBidList(bidList, id);
         model.addAttribute("bidLists", bidListS.getBidLists());
         LOGGER.info("Bid modified");
         return "redirect:/bidList/list";

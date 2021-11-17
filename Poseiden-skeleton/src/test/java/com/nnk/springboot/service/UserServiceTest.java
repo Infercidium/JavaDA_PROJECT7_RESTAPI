@@ -47,6 +47,13 @@ class UserServiceTest {
     }
 
     @Test
+    void updateUser() {
+        userS.updateUser(user, 2);
+        verify(userR, times(1)).save(user);
+        assertEquals(2, user.getId());
+    }
+
+    @Test
     void getUser() {
         User userResult = userS.getUser(isA(Integer.class));
         assertEquals(user, userResult);

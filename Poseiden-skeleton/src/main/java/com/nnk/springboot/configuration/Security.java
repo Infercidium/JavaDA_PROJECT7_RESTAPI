@@ -4,17 +4,24 @@ import com.nnk.springboot.service.UserI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.Optional;
+
 @Configuration
 @EnableWebSecurity
-public class Security extends WebSecurityConfigurerAdapter {
+@EnableJpaAuditing
+public class Security extends WebSecurityConfigurerAdapter
+        implements AuditorAware<String> {
 
     /**
      * Instantiation of userInterface.
@@ -74,5 +81,21 @@ public class Security extends WebSecurityConfigurerAdapter {
                         .logoutRequestMatcher(
                                 new AntPathRequestMatcher("/app-logout"))
                         .permitAll();
+    }
+
+    //Audit
+    /**
+     * Allows specifying which User to create or modify an entity.
+     * @return Username of the logged-in User.
+     */
+    @Override
+    public Optional<String> getCurrentAuditor() {
+        String name = "System";
+        if (SecurityContextHolder.getContext()
+                .getAuthentication().isAuthenticated()) {
+            name = SecurityContextHolder.getContext()
+                    .getAuthentication().getName();
+        }
+        return Optional.ofNullable(name);
     }
 }

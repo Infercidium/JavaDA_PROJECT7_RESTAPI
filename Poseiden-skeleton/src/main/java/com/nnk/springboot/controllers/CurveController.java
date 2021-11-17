@@ -104,8 +104,7 @@ public class CurveController {
             LOGGER.error("Entry error");
             return "curvePoint/update";
         }
-        curvePoint.setId(id);
-        curvePointS.postCurvePoint(curvePoint);
+        curvePointS.updateCurvePoint(curvePoint, id);
         model.addAttribute("curvePoints", curvePointS.getCurvePoints());
         LOGGER.info("Modified curve");
         return "redirect:/curvePoint/list";

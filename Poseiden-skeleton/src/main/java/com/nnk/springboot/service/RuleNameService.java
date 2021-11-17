@@ -27,11 +27,23 @@ public class RuleNameService implements RuleNameI {
     //Service
 
     /**
-     * Add / Update a ruleName in the database.
-     * @param ruleName : to add / update.
+     * Add a ruleName in the database.
+     * @param ruleName : to add.
      */
     @Override
     public void postRuleName(final RuleName ruleName) {
+        ruleNameR.save(ruleName);
+        LOGGER.debug("RuleName save");
+    }
+
+    /**
+     * Update a ruleName in the database.
+     * @param ruleName : to update.
+     * @param id : to set id.
+     */
+    @Override
+    public void updateRuleName(final RuleName ruleName, final Integer id) {
+        ruleName.setId(id);
         ruleNameR.save(ruleName);
         LOGGER.debug("RuleName save");
     }

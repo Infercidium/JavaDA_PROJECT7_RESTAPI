@@ -40,6 +40,13 @@ class RuleNameServiceTest {
     }
 
     @Test
+    void updateRuleName() {
+        ruleNameS.updateRuleName(ruleName, 2);
+        verify(ruleNameR, times(1)).save(ruleName);
+        assertEquals(2, ruleName.getId());
+    }
+
+    @Test
     void getRuleName() {
         RuleName ruleNameResult = ruleNameS.getRuleName(isA(Integer.class));
         assertEquals(ruleName ,ruleNameResult);

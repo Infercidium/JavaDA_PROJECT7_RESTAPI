@@ -104,8 +104,7 @@ public class RatingController {
             LOGGER.error("Entry error");
             return "rating/update";
         }
-        rating.setId(id);
-        ratingS.postRating(rating);
+        ratingS.updateRating(rating, id);
         model.addAttribute("ratings", ratingS.getRatings());
         LOGGER.info("Modified rating");
         return "redirect:/rating/list";
