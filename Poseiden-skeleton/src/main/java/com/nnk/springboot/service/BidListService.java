@@ -44,10 +44,10 @@ public class BidListService implements BidListI {
     @Override
     public void updateBidList(final BidList bidList, final Integer id) {
         BidList originBid = getBidList(id);
-        bidList.setBidListId(id);
-        bidList.setCreationDate(originBid.getCreationDate());
-        bidList.setCreationName(originBid.getCreationName());
-        bidListR.save(bidList);
+        originBid.setAccount(bidList.getAccount());
+        originBid.setType(bidList.getType());
+        originBid.setBidQuantity(bidList.getBidQuantity());
+        bidListR.save(originBid);
         LOGGER.debug("BidList update");
     }
 

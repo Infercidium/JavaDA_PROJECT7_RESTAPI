@@ -43,8 +43,12 @@ public class RatingService implements RatingI {
      */
     @Override
     public void updateRating(final Rating rating, final Integer id) {
-        rating.setId(id);
-        ratingR.save(rating);
+        Rating originRating = getRating(id);
+        originRating.setMoodysRating(rating.getMoodysRating());
+        originRating.setSandPRating(rating.getSandPRating());
+        originRating.setFitchRating(rating.getFitchRating());
+        originRating.setOrderNumber(rating.getOrderNumber());
+        ratingR.save(originRating);
         LOGGER.debug("Rating update");
     }
 

@@ -45,9 +45,10 @@ public class CurvePointService implements CurvePointI {
     public void updateCurvePoint(final CurvePoint curvePoint,
                                  final Integer id) {
         CurvePoint originCurve = getCurvePoint(id);
-        curvePoint.setId(id);
-        curvePoint.setCreationDate(originCurve.getCreationDate());
-        curvePointR.save(curvePoint);
+        originCurve.setCurveId(curvePoint.getCurveId());
+        originCurve.setTerm(curvePoint.getTerm());
+        originCurve.setValue(curvePoint.getValue());
+        curvePointR.save(originCurve);
         LOGGER.debug("CurvePoint update");
     }
 
