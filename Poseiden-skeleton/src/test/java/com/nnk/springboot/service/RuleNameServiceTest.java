@@ -4,14 +4,18 @@ import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -30,7 +34,22 @@ class RuleNameServiceTest {
 
     @BeforeEach
     void setUp() {
-        when(ruleNameR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(ruleName));
+        ruleName.setId(1);
+
+        when(ruleNameR.findById(isA(Integer.class))).thenAnswer(new Answer<Optional<RuleName>>() {
+            /**
+             * @param invocation the invocation on the mock.
+             * @return the value to be returned
+             */
+            @Override
+            public Optional<RuleName> answer(InvocationOnMock invocation) {
+                Integer integer = invocation.getArgument(0, Integer.class);
+                if (integer == 0) {
+                    return Optional.empty();
+                }
+                return Optional.of(ruleName);
+            }
+        });
     }
 
     @Test
@@ -41,15 +60,20 @@ class RuleNameServiceTest {
 
     @Test
     void updateRuleName() {
-        ruleNameS.updateRuleName(ruleName, 2);
+        ruleNameS.updateRuleName(ruleName, 1);
         verify(ruleNameR, times(1)).save(ruleName);
-        assertEquals(2, ruleName.getId());
+        assertEquals(1, ruleName.getId());
     }
 
     @Test
     void getRuleName() {
-        RuleName ruleNameResult = ruleNameS.getRuleName(isA(Integer.class));
+        RuleName ruleNameResult = ruleNameS.getRuleName(1);
         assertEquals(ruleName ,ruleNameResult);
+    }
+
+    @Test
+    void getRuleNameFail() {
+        assertThrows(IllegalArgumentException.class, ()->ruleNameS.getRuleName(0));
     }
 
     @Test
@@ -61,7 +85,7 @@ class RuleNameServiceTest {
 
     @Test
     void deleteRuleName() {
-        ruleNameS.deleteRuleName(isA(Integer.class));
+        ruleNameS.deleteRuleName(1);
         verify(ruleNameR, times(1)).delete(ruleName);
     }
 }

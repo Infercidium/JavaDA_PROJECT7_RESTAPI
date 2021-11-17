@@ -45,13 +45,12 @@ class UserServiceTest {
             /**
              * @param invocation the invocation on the mock.
              * @return the value to be returned
-             * @throws Throwable the throwable to be thrown
              */
             @Override
-            public Optional<User> answer(InvocationOnMock invocation) throws Throwable {
+            public Optional<User> answer(InvocationOnMock invocation) {
                 Integer integer = invocation.getArgument(0, Integer.class);
                 if (integer == 0) {
-                    return Optional.ofNullable(null);
+                    return Optional.empty();
                 }
                 return Optional.of(user);
             }

@@ -4,14 +4,18 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -30,7 +34,23 @@ class TradeServiceTest {
 
     @BeforeEach
     void setUp() {
+        trade.setTradeId(1);
+
         when(tradeR.findById(isA(Integer.class))).thenReturn(java.util.Optional.of(trade));
+        when(tradeR.findById(isA(Integer.class))).thenAnswer(new Answer<Optional<Trade>>() {
+            /**
+             * @param invocation the invocation on the mock.
+             * @return the value to be returned
+             */
+            @Override
+            public Optional<Trade> answer(InvocationOnMock invocation) {
+                Integer integer = invocation.getArgument(0, Integer.class);
+                if (integer == 0) {
+                    return Optional.empty();
+                }
+                return Optional.of(trade);
+            }
+        });
     }
 
     @Test
@@ -41,15 +61,20 @@ class TradeServiceTest {
 
     @Test
     void updateTrade() {
-        tradeS.updateTrade(trade, 2);
+        tradeS.updateTrade(trade, 1);
         verify(tradeR,times(1)).save(trade);
-        assertEquals(2, trade.getTradeId());
+        assertEquals(1, trade.getTradeId());
     }
 
     @Test
     void getTrade() {
-        Trade tradeResult = tradeS.getTrade(isA(Integer.class));
+        Trade tradeResult = tradeS.getTrade(1);
         assertEquals(trade, tradeResult);
+    }
+
+    @Test
+    void getTradeFail() {
+        assertThrows(IllegalArgumentException.class, ()->tradeS.getTrade(0));
     }
 
     @Test
@@ -61,7 +86,7 @@ class TradeServiceTest {
 
     @Test
     void deleteTrade() {
-        tradeS.deleteTrade(isA(Integer.class));
+        tradeS.deleteTrade(1);
         verify(tradeR, times(1)).delete(trade);
     }
 }
